@@ -1,51 +1,50 @@
 package com.example.mykotlin.sunnyweather.ui.place
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.baselibrary.extension.showToast
-import com.example.baselibrary.recycleview.CommonAdapter
-import com.example.baselibrary.recycleview.ViewHolder
 import com.example.mykotlin.R
-import com.example.mykotlin.sunnyweather.logic.model.Place
+import com.example.mykotlin.sunnyweather.ui.MainWeatherActivity
+import com.example.mykotlin.sunnyweather.ui.weather.WeatherActivity
 import kotlinx.android.synthetic.main.fragment_place.*
 
-/**
- * @author yang on 2020/6/7
- */
 class PlaceFragment : Fragment() {
 
-    val viewModel by lazy { ViewModelProvider(this).get(PlaceViewModel::class.java) }
+    val viewModel by lazy { ViewModelProviders.of(this).get(PlaceViewModel::class.java) }
 
-    private lateinit var adapter: CommonAdapter<Place>
+    private lateinit var adapter: PlaceAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_place, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        if (activity is MainWeatherActivity && viewModel.isPlaceSaved()) {
+            val place = viewModel.getSavedPlace()
+            val intent = Intent(context, WeatherActivity::class.java).apply {
+                putExtra("location_lng", place.location.lng)
+                putExtra("location_lat", place.location.lat)
+                putExtra("place_name", place.name)
+            }
+            startActivity(intent)
+            activity?.finish()
+            return
+        }
         val layoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = layoutManager
-        adapter = object : CommonAdapter<Place>(activity!!, R.layout.item_place) {
-            override fun convert(holder: ViewHolder, data: Place, position: Int) {
-                holder.setText(R.id.tvPlaceName, data.name)
-                holder.setText(R.id.tvPlaceAddress, data.address)
-            }
-        }
+        adapter = PlaceAdapter(this, viewModel.placeList)
         recyclerView.adapter = adapter
-        edtSearchPlace.addTextChangedListener {
-            val content = it.toString()
+        edtSearchPlace.addTextChangedListener { editable ->
+            val content = editable.toString()
             if (content.isNotEmpty()) {
                 viewModel.searchPlaces(content)
             } else {
@@ -55,9 +54,8 @@ class PlaceFragment : Fragment() {
                 adapter.notifyDataSetChanged()
             }
         }
-
-        viewModel.placeLiveData.observe(this, Observer {
-            val places = it.getOrNull()
+        viewModel.placeLiveData.observe(this, Observer{ result ->
+            val places = result.getOrNull()
             if (places != null) {
                 recyclerView.visibility = View.VISIBLE
                 ivBg.visibility = View.GONE
@@ -65,13 +63,10 @@ class PlaceFragment : Fragment() {
                 viewModel.placeList.addAll(places)
                 adapter.notifyDataSetChanged()
             } else {
-                R.string.no_place.showToast(activity!!)
-                it.exceptionOrNull()?.printStackTrace()
-
+                Toast.makeText(activity, "未能查询到任何地点", Toast.LENGTH_SHORT).show()
+                result.exceptionOrNull()?.printStackTrace()
             }
         })
-
-
     }
 
 }

@@ -9,7 +9,7 @@ import android.content.Context
 class MyApplication : Application() {
     companion object {
         lateinit var context: Context
-        const val TOKEN = ""
+        const val TOKEN = "j8oNdq1laLYgx0kQ"
     }
 
     override fun onCreate() {

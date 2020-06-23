@@ -3,4 +3,10 @@
     <string name="search_place">输入地址</string>
     <string name="material_design">Material Design</string>
     <string name="no_place">未能查询到任何地点</string>
+    <string name="weather">天气</string>
+    <string name="life_index">生活指数</string>
+    <string name="cold">感冒</string>
+    <string name="dress">穿衣</string>
+    <string name="ultraviolet">实时紫外线</string>
+    <string name="clean_car">洗车</string>
 </resources>

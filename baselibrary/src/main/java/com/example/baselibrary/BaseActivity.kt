@@ -21,7 +21,7 @@ abstract class BaseActivity : AppCompatActivity() {
         initView()
     }
 
-    private fun initData() {
+    protected fun initData() {
 
     }
 
