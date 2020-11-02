@@ -82,7 +82,7 @@ open class MultiItemTypeAdapter<T>(private val context: Context, private val lis
      * 在有数据的情况下添加数据集合
      */
     fun addDataList(data: List<T>) {
-        val position = list.size - 1
+        val position = list.size
         list.addAll(data)
         notifyItemRangeChanged(position, data.size)
     }

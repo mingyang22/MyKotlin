@@ -15,4 +15,6 @@
     <!-- Toolbar深色主题 -->
     <style name="ThemeOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <style name="MaterialComponents" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+
 </resources>

@@ -9,4 +9,5 @@
     <string name="dress">穿衣</string>
     <string name="ultraviolet">实时紫外线</string>
     <string name="clean_car">洗车</string>
+    <string name="material_widget">Material Widget</string>
 </resources>

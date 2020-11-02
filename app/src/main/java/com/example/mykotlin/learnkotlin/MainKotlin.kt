@@ -15,6 +15,9 @@ fun main() {
 
     val range = 0 until 10
     val range2 = 10 downTo 0
+    for (i in range) {
+        print("$i ")
+    }
     for (i in range2 step 2) {
         print("$i ")
     }
@@ -42,17 +45,12 @@ fun main() {
     val map = mapOf("a" to 1, "b" to 2, "c" to 3, "d" to 4)
     println(map)
 
-    val list1 = listOf("Apple", "Banana", "Orange", "Pear", "Grape", "Watermelon")
-    val maxLengthFruit = list1.maxBy { it.length }
-    println("max length fruit is $maxLengthFruit")
-    val newList = list1.map { it.toUpperCase() }
-    println(newList)
-    val newList1 = list1.filter { it.length <= 5 }
-        .map { it.toUpperCase() }
-    println(newList1)
-    val anyResult = list1.any { it.length >= 5 }
-    val allResult = list1.all { it.length >= 5 }
-    println("anyResult is $anyResult, allResult is $allResult")
+    test(null)
+
+    var wordIds = ""
+    if (wordIds.isNotEmpty()) {
+        wordIds = wordIds.take(wordIds.length - 1)
+    }
 
 }
 
@@ -75,4 +73,14 @@ fun checkNumber(num: Number) {
         is Double -> println("number is Double")
         else -> println("number not support")
     }
+}
+
+fun test(str: String?) {
+    if (str?.isNotEmpty() == true) {
+        println("test")
+    }
+    if (str.isNullOrEmpty()) {
+        println("test isNullOrEmpty")
+    }
+
 }
