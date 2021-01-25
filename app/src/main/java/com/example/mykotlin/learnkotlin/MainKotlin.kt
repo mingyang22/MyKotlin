@@ -28,6 +28,7 @@ fun main() {
     val student = Student()
     val student1 = Student(name = "Tom", age = 22)
     val student2 = Student("a123", 5, "Tony", 18)
+    student.testCompanion()
     student1.readBooks()
     student1.doHomework()
 

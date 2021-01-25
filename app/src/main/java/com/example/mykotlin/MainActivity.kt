@@ -2,10 +2,8 @@ package com.example.mykotlin
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.postDelayed
 import androidx.lifecycle.Lifecycle
 import com.example.mykotlin.material.MaterialActivity
 import com.example.mykotlin.material.WidgetActivity
@@ -15,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        val TAG = "MainActivity"
+        const val TAG = "MainActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

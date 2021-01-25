@@ -6,6 +6,12 @@ package com.example.mykotlin.learnkotlin
 open class Person(var name: String, var age: Int) {
     constructor() : this("", 0)
 
+    companion object {
+        const val index = 0
+    }
+
+    protected  var page = index
+
     fun eat() {
         println("\n$name is eating. He is $age years old.")
     }

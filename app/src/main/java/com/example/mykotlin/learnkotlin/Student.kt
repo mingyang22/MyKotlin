@@ -11,6 +11,12 @@ class Student(var sno: String = "", var grade: Int = 0, name: String = "", age: 
 //    constructor() : this("", 0)
 //    constructor(name: String, age: Int) : this("", 0, name, age)
 
+    companion object {
+        const val index = 1
+    }
+
+//    override var page = index
+
     init {
         if (name.isNotEmpty() && age > 0 && sno.isNotEmpty() && grade > 0)
             println("$name is $age years old, sno is $sno, grade is $grade")
@@ -24,5 +30,8 @@ class Student(var sno: String = "", var grade: Int = 0, name: String = "", age: 
         println("$name id doing homework")
     }
 
+    fun testCompanion() {
+        println(page)
+    }
 
 }
