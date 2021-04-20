@@ -14,5 +14,11 @@ fun main() {
         }
     }
 
+    var test: String = "null"
+    var str = with(test) {
+        println(length)
+       return@with 100
+    }
+    println(str)
 
 }

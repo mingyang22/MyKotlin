@@ -18,6 +18,7 @@ fun main() {
     for (i in range) {
         print("$i ")
     }
+    println(0 in range)
     for (i in range2 step 2) {
         print("$i ")
     }

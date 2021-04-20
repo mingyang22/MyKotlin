@@ -8,6 +8,7 @@ import androidx.lifecycle.Lifecycle
 import com.example.mykotlin.material.MaterialActivity
 import com.example.mykotlin.material.WidgetActivity
 import com.example.mykotlin.sunnyweather.ui.MainWeatherActivity
+import com.example.mykotlin.view.ViewActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity() {
 
         btnMaterial.setOnClickListener { startActivity(Intent(this, WidgetActivity::class.java)) }
         btnMaterial.postDelayed({ Log.e(TAG, "postDelayed: ${lifecycle.currentState}") }, 2000)
+
+        btnView.setOnClickListener { startActivity(Intent(this, ViewActivity::class.java)) }
 
     }
 
