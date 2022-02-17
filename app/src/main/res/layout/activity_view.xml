@@ -7,12 +7,16 @@
     android:background="@color/black"
     tools:context=".view.ViewActivity">
 
-    <com.example.mykotlin.view.DimpleView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <blink
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <com.example.mykotlin.view.DimpleView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </blink>
 </androidx.constraintlayout.widget.ConstraintLayout>
