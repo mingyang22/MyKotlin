@@ -10,6 +10,7 @@ import android.view.animation.LinearInterpolator
 import java.util.*
 import kotlin.math.acos
 import kotlin.math.cos
+import kotlin.math.sin
 import kotlin.system.measureTimeMillis
 
 /**
@@ -60,11 +61,16 @@ class DimpleView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         particleList.forEach {
             if (it.offset > it.maxOffset) {
                 it.offset = 0
-                it.speed = (random.nextInt(10) + 5).toFloat()
+                it.speed = (random.nextInt(2) + 2).toFloat()
             }
-            it.alpha = (1f - (it.offset / it.maxOffset) * 255f).toInt()
+            it.alpha = ((1f - it.offset / it.maxOffset) * 255f).toInt()
             it.x = (centerX + cos(it.angle) * (280f + it.offset)).toFloat()
-            it.y += it.speed
+            if (it.y > centerY) {
+                it.y = (sin(it.angle) * (280f + it.offset) + centerY).toFloat()
+            } else {
+                it.y = (centerY - sin(it.angle) * (280f + it.offset)).toFloat()
+            }
+            it.offset += it.speed.toInt()
         }
 
     }
@@ -81,16 +87,31 @@ class DimpleView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         var nextY = 0f
         var speed = 0
         var angle = 0.0
-        for (i in 0..500) {
+        var offset = 0
+        var maxOffset = 0
+        for (i in 0..2000) {
             // 按比例测量路径上每一点的值
-            pathMeasure.getPosTan(i / 500f * pathMeasure.length, pos, tan)
+            pathMeasure.getPosTan(i / 2000f * pathMeasure.length, pos, tan)
             nextX = pos[0] + random.nextInt(6) - 3f
             nextY = pos[1] + random.nextInt(6) - 3f
             // 初始速度从5-15不等
-            speed = random.nextInt(10) + 5
+            speed = random.nextInt(2) + 2
             // 反余弦函数得到角度值，是弧度
             angle = acos(((pos[0] - centerX) / 280f).toDouble())
-            particleList.add(Particle(nextX, nextY, 2f, speed.toFloat(), 100, 300f, 0, angle))
+            offset = random.nextInt(200)
+            maxOffset = random.nextInt(200)
+            particleList.add(
+                Particle(
+                    nextX,
+                    nextY,
+                    2f,
+                    speed.toFloat(),
+                    100,
+                    maxOffset.toFloat(),
+                    offset,
+                    angle
+                )
+            )
         }
         animator.start()
     }
