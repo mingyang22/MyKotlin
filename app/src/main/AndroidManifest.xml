@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ViewActivity"></activity>
+        <activity android:name=".view.ViewActivity"/>
         <activity
             android:name=".material.WidgetActivity"
             android:theme="@style/MaterialComponents" />
@@ -31,6 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".result.OneActivity" />
+        <activity android:name=".result.TwoActivity" />
+        <activity android:name=".result.ThreeActivity" />
     </application>
 
 </manifest>

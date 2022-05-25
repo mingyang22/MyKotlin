@@ -12,7 +12,7 @@ fun main() {
     val numList = listOf(1, 3, 5, -1, 4, 7, 9, 2)
 
     // 总数操作符
-    println("max length fruit is ${fruitList.maxBy { it.length }}")
+    println("max length fruit is ${fruitList.maxByOrNull { it.length }}")
     println("anyResult is ${fruitList.any { it.length >= 5 }}")
     println("allResult is ${fruitList.all { it.length >= 5 }}")
     println("totalCount is ${fruitList.count { it.length >= 6 }}")
@@ -23,8 +23,8 @@ fun main() {
     println(numList.fold(2) { total, next -> total + next })
     // 通过一个函数从第一项到最后一项进行累计
     println(numList.reduce { total, next -> total + next })
-    println("numList.min = ${numList.min()}")
-    println("numList.max = ${numList.max()}")
+    println("numList.min = ${numList.minOrNull()}")
+    println("numList.max = ${numList.maxOrNull()}")
     // 如果没有任何元素与给定的函数匹配，则返回true
     println("numList.none = ${numList.none { it > 10 }}")
     // 返回所有每一项通过函数转换之后的数据的总和

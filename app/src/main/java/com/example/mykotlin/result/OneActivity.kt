@@ -1,42 +1,32 @@
-package com.example.mykotlin
+package com.example.mykotlin.result
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
-import com.example.mykotlin.material.MaterialActivity
-import com.example.mykotlin.material.WidgetActivity
-import com.example.mykotlin.result.OneActivity
-import com.example.mykotlin.sunnyweather.ui.MainWeatherActivity
-import com.example.mykotlin.view.ViewActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.mykotlin.R
+import kotlinx.android.synthetic.main.activity_one.*
 
-class MainActivity : AppCompatActivity() {
+/**
+ * 测试结果标明  使用ActivityResult API跳转页面B，在B页面跳转C并finish自身，此时A不会收到回调
+ */
+class OneActivity : AppCompatActivity() {
 
     companion object {
-        const val TAG = "MainActivity"
+        const val TAG = "OneActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        btnName.setOnClickListener { startActivity(Intent(this, MaterialActivity::class.java)) }
-        btnResult.setOnClickListener { startActivity(Intent(this, OneActivity::class.java)) }
-
-        btnWeather.setOnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    MainWeatherActivity::class.java
-                )
-            )
+        setContentView(R.layout.activity_one)
+        val launcher = createActivityResultLauncher()
+        tv.setOnClickListener {
+            val intent = Intent(this, TwoActivity::class.java)
+            launcher.launch(intent)
         }
-
-        btnMaterial.setOnClickListener { startActivity(Intent(this, WidgetActivity::class.java)) }
-        btnMaterial.postDelayed({ Log.e(TAG, "postDelayed: ${lifecycle.currentState}") }, 2000)
-
-        btnView.setOnClickListener { startActivity(Intent(this, ViewActivity::class.java)) }
 
     }
 
@@ -98,6 +88,15 @@ class MainActivity : AppCompatActivity() {
             TAG,
             "onDestroy: ${lifecycle.currentState} ${lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)}"
         )
+    }
+
+    private fun createActivityResultLauncher(): ActivityResultLauncher<Intent> {
+        return registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                Log.e(TAG, "createActivityResultLauncher: finish" )
+                finish()
+            }
+        }
     }
 
 }

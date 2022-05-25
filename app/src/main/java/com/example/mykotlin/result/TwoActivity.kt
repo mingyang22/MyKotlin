@@ -1,42 +1,27 @@
-package com.example.mykotlin
+package com.example.mykotlin.result
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
-import com.example.mykotlin.material.MaterialActivity
-import com.example.mykotlin.material.WidgetActivity
-import com.example.mykotlin.result.OneActivity
-import com.example.mykotlin.sunnyweather.ui.MainWeatherActivity
-import com.example.mykotlin.view.ViewActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.mykotlin.R
+import kotlinx.android.synthetic.main.activity_two.*
 
-class MainActivity : AppCompatActivity() {
+class TwoActivity : AppCompatActivity() {
 
     companion object {
-        const val TAG = "MainActivity"
+        const val TAG = "TwoActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        btnName.setOnClickListener { startActivity(Intent(this, MaterialActivity::class.java)) }
-        btnResult.setOnClickListener { startActivity(Intent(this, OneActivity::class.java)) }
-
-        btnWeather.setOnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    MainWeatherActivity::class.java
-                )
-            )
+        setContentView(R.layout.activity_two)
+        tv.setOnClickListener {
+            startActivity(Intent(this, ThreeActivity::class.java))
+            setResult(RESULT_OK)
+            finish()
         }
-
-        btnMaterial.setOnClickListener { startActivity(Intent(this, WidgetActivity::class.java)) }
-        btnMaterial.postDelayed({ Log.e(TAG, "postDelayed: ${lifecycle.currentState}") }, 2000)
-
-        btnView.setOnClickListener { startActivity(Intent(this, ViewActivity::class.java)) }
 
     }
 
