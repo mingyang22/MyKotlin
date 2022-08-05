@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <declare-styleable name="TimerCircle">
+        <!--圆环的宽度-->
+        <attr name="width" format="dimension"/>
+        <!--内圆的颜色-->
+        <attr name="circleColor" format="color"/>
+        <!--圆环的颜色-->
+        <attr name="ringColor" format="color"/>
+        <!--倒计时时间-->
+        <attr name="maxTime" format="integer"/>
+        <!--圆环的路径颜色-->
+        <attr name="path" format="color"/>
+        <!--倒计时字体颜色-->
+        <attr name="textColor" format="color"/>
+        <!--倒计时字体大小-->
+        <attr name="textSize" format="dimension"/>
+    </declare-styleable>
+
+
+</resources>
