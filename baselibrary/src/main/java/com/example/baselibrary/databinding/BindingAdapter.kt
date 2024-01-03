@@ -1,4 +1,4 @@
-package com.basestonedata.basecomponent.databinding
+package com.example.baselibrary.databinding
 
 import android.graphics.Color
 import android.graphics.Typeface

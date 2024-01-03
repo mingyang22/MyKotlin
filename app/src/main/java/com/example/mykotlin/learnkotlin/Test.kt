@@ -1,11 +1,15 @@
 package com.example.mykotlin.learnkotlin
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.example.mykotlin.utils.DateUtils
 import java.lang.StringBuilder
 
 /**
  * @author ym on 2020/11/9
  *
  */
+@RequiresApi(Build.VERSION_CODES.O)
 fun main() {
     var vipPayProductList = ArrayList<String>()
     for (index in vipPayProductList.withIndex()) {
@@ -16,6 +20,7 @@ fun main() {
         }
     }
 
+    // 1860.52
     var test: String = "null"
     var str = with(test) {
         println(length)
@@ -51,6 +56,7 @@ fun main() {
     println(testConversion())
     testIndexOf()
     testSubList()
+    println(DateUtils.timeToString(DateUtils.getCurrentMillisecond()))
 }
 
 fun testForEach() {

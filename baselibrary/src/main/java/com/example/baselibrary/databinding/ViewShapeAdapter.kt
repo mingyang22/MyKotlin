@@ -1,4 +1,4 @@
-package com.basestonedata.basecomponent.databinding
+package com.example.baselibrary.databinding
 
 import android.content.res.ColorStateList
 import android.graphics.Color
